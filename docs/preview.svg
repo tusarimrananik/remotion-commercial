@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080" role="img" aria-labelledby="title desc">
+  <title id="title">FocusFlow Remotion commercial preview</title>
+  <desc id="desc">A dark purple and teal product advertisement with a checkmark logo and call-to-action.</desc>
+  <defs>
+    <radialGradient id="background" cx="50%" cy="25%" r="80%">
+      <stop offset="0" stop-color="#30245d"/>
+      <stop offset="0.5" stop-color="#111326"/>
+      <stop offset="1" stop-color="#090b14"/>
+    </radialGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7c5cff"/>
+      <stop offset="1" stop-color="#39d9c5"/>
+    </linearGradient>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="20" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M64 0H0V64" fill="none" stroke="#ffffff" stroke-opacity="0.045"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#background)"/>
+  <circle cx="90" cy="100" r="330" fill="#7c5cff" opacity="0.12" filter="url(#glow)"/>
+  <circle cx="990" cy="970" r="300" fill="#39d9c5" opacity="0.10" filter="url(#glow)"/>
+  <rect width="1080" height="1080" fill="url(#grid)"/>
+  <rect x="450" y="218" width="180" height="180" rx="50" fill="url(#brand)" filter="url(#glow)"/>
+  <path d="M493 311l37 36 62-75" fill="none" stroke="#fff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="540" y="520" fill="#fff" font-family="Inter,Arial,sans-serif" font-size="84" font-weight="800" text-anchor="middle">FocusFlow</text>
+  <text x="540" y="595" fill="#c4cadf" font-family="Inter,Arial,sans-serif" font-size="36" text-anchor="middle">A clearer way to get things done.</text>
+  <rect x="305" y="690" width="470" height="104" rx="52" fill="url(#brand)" filter="url(#glow)"/>
+  <text x="540" y="757" fill="#fff" font-family="Inter,Arial,sans-serif" font-size="34" font-weight="700" text-anchor="middle">Start free today →</text>
+  <text x="540" y="890" fill="#858da8" font-family="Inter,Arial,sans-serif" font-size="27" text-anchor="middle">15-second Remotion commercial demo</text>
+</svg>
