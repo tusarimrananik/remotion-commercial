@@ -1,0 +1,25 @@
+{
+  "name": "remotion-commercial",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A reusable animated commercial built with Remotion.",
+  "scripts": {
+    "start": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts FocusFlowCommercial out/focusflow-commercial.mp4",
+    "render:vertical": "remotion render src/index.ts FocusFlowCommercialVertical out/focusflow-commercial-vertical.mp4",
+    "still": "remotion still src/index.ts FocusFlowCommercial out/preview.png --frame=372",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.490",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "remotion": "4.0.490"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "typescript": "5.9.3"
+  }
+}
