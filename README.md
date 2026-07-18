@@ -4,7 +4,7 @@ A complete, reusable 15-second animated product commercial built with [Remotion]
 
 This demo advertises a fictional productivity app called **FocusFlow**. The video is generated with React and CSS, so the copy, colors, timing, music, and product UI can be changed without rebuilding the edit in a traditional timeline editor.
 
-![Commercial preview](docs/preview.png)
+![Commercial preview](docs/preview.svg)
 
 ## Included
 
@@ -13,7 +13,7 @@ This demo advertises a fictional productivity app called **FocusFlow**. The vide
 - Vertical composition: `1080 × 1920`
 - Four scenes: hook, product demo, benefits, and call-to-action
 - Animated text, app interface, cards, and transitions
-- Generated background music and synchronized sound effects
+- Background music and synchronized sound effects generated directly in code
 - Editable props inside Remotion Studio
 - Ready-to-render MP4 commands
 
@@ -43,7 +43,7 @@ Vertical commercial:
 npm run render:vertical
 ```
 
-Create the preview image:
+Create a still image from the actual composition:
 
 ```bash
 npm run still
@@ -64,10 +64,15 @@ Open `src/Commercial.tsx` or use the props panel in Remotion Studio. You can edi
 
 The initial values are stored in `defaultCommercialProps`.
 
+## Audio
+
+`src/audio.ts` creates the demo music, whoosh, and pop effects programmatically. This keeps the repository self-contained and ensures the effects remain aligned to the timeline.
+
 ## Add your own voice-over
 
-1. Put your recording at `public/audio/voiceover.mp3`.
-2. Add this inside the main `Commercial` component:
+1. Create `public/audio/voiceover.mp3` and place your recording there.
+2. Import `staticFile` from `remotion`.
+3. Add this inside the main `Commercial` component:
 
 ```tsx
 <Audio src={staticFile('audio/voiceover.mp3')} volume={1} />
@@ -79,14 +84,16 @@ For a professional result, reduce the background-music volume while narration is
 
 ```text
 remotion-commercial/
-├── public/audio/        # Music and sound effects
+├── docs/
+│   └── preview.svg      # Repository preview
 ├── src/
-│   ├── Commercial.tsx  # Scenes, animations, props, and audio
+│   ├── audio.ts         # Generated music and sound effects
+│   ├── Commercial.tsx  # Scenes, animations, props, and timeline
 │   ├── Root.tsx        # Composition registration
 │   └── index.ts        # Remotion entry point
-├── docs/preview.png    # Repository preview
 ├── package.json
-└── remotion.config.ts
+├── remotion.config.ts
+└── tsconfig.json
 ```
 
 ## Turn it into a real advertisement
