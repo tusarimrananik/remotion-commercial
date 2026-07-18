@@ -5,11 +5,11 @@ import {
   Sequence,
   interpolate,
   spring,
-  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from 'remotion';
 import {z} from 'zod';
+import {musicDataUri, popDataUri, whooshDataUri} from './audio';
 
 export const commercialSchema = z.object({
   brandName: z.string(),
@@ -86,14 +86,11 @@ const HookScene: React.FC<CommercialProps> = (props) => {
   const isVertical = height > 1200;
   const logoScale = enter(frame, fps, 2);
   const lineWidth = interpolate(frame, [26, 70], [0, isVertical ? 720 : 620], clamp);
-
   return (
     <AbsoluteFill style={{alignItems: 'center', justifyContent: 'center', padding: isVertical ? 90 : 70}}>
       <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isVertical ? 48 : 30, textAlign: 'center'}}>
         <div style={{transform: `scale(${logoScale})`}}><AppMark accentColor={props.accentColor} secondaryColor={props.secondaryColor} size={isVertical ? 130 : 104} /></div>
-        <FadeSlide delay={10} distance={70}>
-          <div style={{fontSize: isVertical ? 102 : 84, fontWeight: 850, letterSpacing: -4, lineHeight: 0.98, maxWidth: 900}}>{props.headline}</div>
-        </FadeSlide>
+        <FadeSlide delay={10} distance={70}><div style={{fontSize: isVertical ? 102 : 84, fontWeight: 850, letterSpacing: -4, lineHeight: 0.98, maxWidth: 900}}>{props.headline}</div></FadeSlide>
         <div style={{width: lineWidth, height: 7, borderRadius: 99, background: `linear-gradient(90deg, ${props.accentColor}, ${props.secondaryColor})`, boxShadow: glow(props.accentColor, 28)}} />
         <FadeSlide delay={30}><div style={{fontSize: isVertical ? 43 : 34, color: '#CDD2E8', fontWeight: 520}}>{props.subheadline}</div></FadeSlide>
       </div>
@@ -107,9 +104,7 @@ const TaskRow: React.FC<{label: string; done?: boolean; delay: number; accentCol
   const progress = enter(frame, fps, delay);
   return (
     <div style={{display: 'flex', alignItems: 'center', gap: 18, padding: '19px 22px', borderRadius: 22, background: 'rgba(255,255,255,0.055)', border: '1px solid rgba(255,255,255,0.08)', transform: `translateX(${(1 - progress) * 90}px)`, opacity: progress}}>
-      <div style={{width: 32, height: 32, borderRadius: 10, border: `2px solid ${done ? accentColor : '#596078'}`, background: done ? accentColor : 'transparent', display: 'grid', placeItems: 'center', boxShadow: done ? glow(accentColor, 16) : undefined}}>
-        {done ? <span style={{fontSize: 21, fontWeight: 900}}>✓</span> : null}
-      </div>
+      <div style={{width: 32, height: 32, borderRadius: 10, border: `2px solid ${done ? accentColor : '#596078'}`, background: done ? accentColor : 'transparent', display: 'grid', placeItems: 'center', boxShadow: done ? glow(accentColor, 16) : undefined}}>{done ? <span style={{fontSize: 21, fontWeight: 900}}>✓</span> : null}</div>
       <span style={{fontSize: 27, fontWeight: 650, color: done ? '#AEB6CF' : 'white', textDecoration: done ? 'line-through' : undefined}}>{label}</span>
     </div>
   );
@@ -121,7 +116,6 @@ const ProductScene: React.FC<CommercialProps> = (props) => {
   const isVertical = height > 1200;
   const phone = enter(frame, fps, 0);
   const tilt = interpolate(frame, [0, 120], [-5, 2], clamp);
-
   return (
     <AbsoluteFill style={{padding: isVertical ? 86 : 62, justifyContent: 'center'}}>
       <div style={{display: 'flex', flexDirection: isVertical ? 'column' : 'row', alignItems: 'center', justifyContent: 'center', gap: isVertical ? 70 : 72}}>
@@ -171,9 +165,7 @@ const BenefitsScene: React.FC<CommercialProps> = (props) => {
   return (
     <AbsoluteFill style={{padding: isVertical ? '120px 72px' : '70px 62px', justifyContent: 'center'}}>
       <FadeSlide><div style={{textAlign: 'center', fontSize: isVertical ? 82 : 66, fontWeight: 880, letterSpacing: -3}}>Less friction. More momentum.</div></FadeSlide>
-      <div style={{display: 'flex', flexDirection: isVertical ? 'column' : 'row', gap: isVertical ? 28 : 22, marginTop: isVertical ? 70 : 52}}>
-        {benefits.map(([icon, title, body], i) => <BenefitCard key={title} icon={icon} title={title} body={body} delay={12 + i * 10} accentColor={i === 1 ? props.secondaryColor : props.accentColor} />)}
-      </div>
+      <div style={{display: 'flex', flexDirection: isVertical ? 'column' : 'row', gap: isVertical ? 28 : 22, marginTop: isVertical ? 70 : 52}}>{benefits.map(([icon, title, body], i) => <BenefitCard key={title} icon={icon} title={title} body={body} delay={12 + i * 10} accentColor={i === 1 ? props.secondaryColor : props.accentColor} />)}</div>
     </AbsoluteFill>
   );
 };
@@ -210,7 +202,7 @@ export const Commercial: React.FC<CommercialProps> = (props) => {
   return (
     <AbsoluteFill style={{fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif', color: 'white', opacity: masterFade}}>
       <Background accentColor={props.accentColor} secondaryColor={props.secondaryColor} backgroundColor={props.backgroundColor} />
-      {props.showMusic ? <Audio src={staticFile('audio/music.wav')} volume={(f) => interpolate(f, [0, 25, 410, 449], [0, 0.18, 0.18, 0], clamp)} /> : null}
+      {props.showMusic ? <Audio src={musicDataUri} volume={(f) => interpolate(f, [0, 25, 410, 449], [0, 0.18, 0.18, 0], clamp)} /> : null}
       <Sequence from={0} durationInFrames={90} premountFor={30}><HookScene {...props} /></Sequence>
       <Sequence from={90} durationInFrames={130} premountFor={30}><ProductScene {...props} /></Sequence>
       <Sequence from={220} durationInFrames={120} premountFor={30}><BenefitsScene {...props} /></Sequence>
@@ -218,7 +210,7 @@ export const Commercial: React.FC<CommercialProps> = (props) => {
       {[86, 216, 336].map((start, index) => (
         <Sequence key={start} from={start} durationInFrames={18}>
           <TransitionFlash color={index === 1 ? props.secondaryColor : props.accentColor} />
-          <Audio src={staticFile(index === 1 ? 'audio/pop.wav' : 'audio/whoosh.wav')} volume={0.45} />
+          <Audio src={index === 1 ? popDataUri : whooshDataUri} volume={0.45} />
         </Sequence>
       ))}
     </AbsoluteFill>
