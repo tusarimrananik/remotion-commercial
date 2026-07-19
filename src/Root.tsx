@@ -6,9 +6,9 @@ export const RemotionRoot: React.FC = () => {
   return (
     <>
       <Composition
-        id="FocusFlowCommercial"
+        id="BangladeshHackersAdSquare"
         component={Commercial}
-        durationInFrames={450}
+        durationInFrames={1130}
         fps={30}
         width={1080}
         height={1080}
@@ -16,9 +16,9 @@ export const RemotionRoot: React.FC = () => {
         defaultProps={defaultCommercialProps}
       />
       <Composition
-        id="FocusFlowCommercialVertical"
+        id="BangladeshHackersAdVertical"
         component={Commercial}
-        durationInFrames={450}
+        durationInFrames={1130}
         fps={30}
         width={1080}
         height={1920}

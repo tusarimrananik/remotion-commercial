@@ -5,9 +5,9 @@
   "description": "A reusable animated commercial built with Remotion.",
   "scripts": {
     "start": "remotion studio src/index.ts",
-    "render": "remotion render src/index.ts FocusFlowCommercial out/focusflow-commercial.mp4",
-    "render:vertical": "remotion render src/index.ts FocusFlowCommercialVertical out/focusflow-commercial-vertical.mp4",
-    "still": "remotion still src/index.ts FocusFlowCommercial out/preview.png --frame=372",
+    "render": "remotion render src/index.ts BangladeshHackersAdSquare out/bangladesh-hackers-ad-square.mp4",
+    "render:vertical": "remotion render src/index.ts BangladeshHackersAdVertical out/bangladesh-hackers-facebook-ad.mp4",
+    "still": "remotion still src/index.ts BangladeshHackersAdVertical out/preview.png --frame=520",
     "typecheck": "tsc --noEmit",
     "check": "npm run typecheck"
   },
@@ -16,7 +16,7 @@
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "remotion": "4.0.490",
-    "zod": "4.4.3"
+    "zod": "4.3.6"
   },
   "devDependencies": {
     "@types/react": "19.2.17",
